@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  *
@@ -21,7 +22,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class UserController {
+    //指定该方法为一个action
+     
     @RequestMapping("/privateapi/allusers")
+    @ResponseBody
     private JSONObject allUsers() throws JSONException, IOException{
         JsonUtil jsonUtil = new JsonUtil();
         JSONObject jsonObj = new JSONObject();
