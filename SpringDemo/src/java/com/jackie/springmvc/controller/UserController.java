@@ -41,7 +41,8 @@ public class UserController {
             JSONObject userStr = JsonUtil.objectToJSON(user);
             userArr.put(userStr);
         }
-        jsonObj.put("users", userArr);   
+        jsonObj.put("users", userArr);
+        System.out.println(jsonObj);
         return jsonObj;
     }
 }

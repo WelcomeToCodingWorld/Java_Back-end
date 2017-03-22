@@ -7,6 +7,7 @@ package com.jackie.springmvc.common;
 
 import java.io.IOException;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.codehaus.jackson.ObjectCodec;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -22,6 +23,10 @@ public class JsonUtil {
             t = objectmapper.readValue(jsonStr, obj);
             
         } catch (IOException e) {
+            StackTraceElement stackTraceElement= e.getStackTrace()[0];// 得到异常棧的首个元素
+            System.out.println("File="+stackTraceElement.getFileName());// 打印文件名
+            System.out.println("Line="+stackTraceElement.getLineNumber());// 打印出错行号
+            System.out.println("Method="+stackTraceElement.getMethodName());// 打印出错方法 
             e.printStackTrace();
         }
         return t;
