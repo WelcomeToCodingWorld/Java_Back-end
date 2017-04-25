@@ -14,3 +14,4 @@ hs_err_pid*
 /WebAppDemo/build/
 /SpringDemo/dist/
 /MavenSpingDemo/MavenSpingDemo/target/
+/spring-ws-master/.nb-gradle/

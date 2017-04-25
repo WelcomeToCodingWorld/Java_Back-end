@@ -5,11 +5,21 @@
  */
 package com.jackie.springmvc.model;
 
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
 /**
  *
  * @author zz
  */
-public class User {
+@Entity
+public class User implements Serializable {
+
+    @Id
+    @OneToOne
+    private User userId;
     private String name;
     private boolean sex;
     private int age;
@@ -54,6 +64,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
     
 }

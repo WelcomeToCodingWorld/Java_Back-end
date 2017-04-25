@@ -32,4 +32,23 @@ http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd"
             <property name = "prefix" value="/WEB-INF/jsp/"></property>
             <property name = "suffix" value = ".jsp"></property>
         </bean>
+        <bean name="jsonView" class="com.jackie.springmvc.view.JsonView">
+	</bean>
+	<bean id="viewResolver" class="com.jackie.springmvc.viewresolver.MultiViewResolver">
+		<property name="resolvers">
+			<map>
+				<entry key="jsp">
+					<bean
+						class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+						<property name="prefix" value="/" />
+						<property name="suffix" value=".jsp" />
+					</bean>
+				</entry>
+				<entry key="json">
+					<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
+					</bean>
+				</entry>
+			</map>
+		</property>
+	</bean>
 </beans>

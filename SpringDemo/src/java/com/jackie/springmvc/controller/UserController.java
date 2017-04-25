@@ -4,16 +4,19 @@
  * and open the template in the editor.
  */
 package com.jackie.springmvc.controller;
-import com.jackie.springmvc.bll.UserBLL;
 import com.jackie.springmvc.common.JsonUtil;
 import com.jackie.springmvc.model.User;
+import com.jackie.springmvc.service.UserServiceImpl;
 import java.io.IOException;
 import java.util.List;
+import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
@@ -23,15 +26,18 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class UserController {
     //指定该方法为一个action
+    private final UserServiceImpl userService = new UserServiceImpl();
      
-    @RequestMapping("/privateapi/allusers")
+ 
+    @RequestMapping(value="/privateapi/allusers",method={RequestMethod.POST, RequestMethod.GET},produces=MediaType.APPLICATION_JSON_VALUE,headers = "Accept=application/json")
     @ResponseBody
-    private JSONObject allUsers() throws JSONException, IOException{
+    private String allUsers() throws JSONException, IOException{
         JsonUtil jsonUtil = new JsonUtil();
         JSONObject jsonObj = new JSONObject();
         String msg = "sdsgwe";
         String code = "102";
-        List<User> userList = UserBLL.allusers();
+        List<User> userList;
+        userList = userService.allusers();
         JSONArray userArr = new JSONArray();
         
         jsonObj.put("msg", msg);
@@ -43,6 +49,6 @@ public class UserController {
         }
         jsonObj.put("users", userArr);
         System.out.println(jsonObj);
-        return jsonObj;
+        return jsonObj.toString();
     }
 }
